@@ -1,0 +1,12 @@
+load database
+    from sqlite:///Git/Homework/navel-biodiversity/db/bellybutton.sqlite
+    into postgresql://postgres:Alm0ndJ0y!1@localhost:5432/xfer
+
+     with include drop, create tables, create indexes, reset sequences
+
+  set work_mem to '16MB', maintenance_work_mem to '512 MB';
+
+
+
+
+

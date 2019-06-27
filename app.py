@@ -15,7 +15,7 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db/bellybutton.sqlite"
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgres://prbcuqtvmnvkkl:c4aaa102695ff0b8afd6025da6ae1e524f850630a1f7538d9ccdb485cf614a17@ec2-107-21-216-112.compute-1.amazonaws.com:5432/dd8go6sfh1pce8"
 db = SQLAlchemy(app)
 
 # reflect an existing database into a new model
@@ -51,12 +51,12 @@ def sample_metadata(sample):
     """Return the MetaData for a given sample."""
     sel = [
         Samples_Metadata.sample,
-        Samples_Metadata.ETHNICITY,
-        Samples_Metadata.GENDER,
-        Samples_Metadata.AGE,
-        Samples_Metadata.LOCATION,
-        Samples_Metadata.BBTYPE,
-        Samples_Metadata.WFREQ,
+        Samples_Metadata.ethnicity,
+        Samples_Metadata.gender,
+        Samples_Metadata.age,
+        Samples_Metadata.location,
+        Samples_Metadata.bbtype,
+        Samples_Metadata.wfreq,
     ]
 
     results = db.session.query(*sel).filter(Samples_Metadata.sample == sample).all()
@@ -65,12 +65,12 @@ def sample_metadata(sample):
     sample_metadata = {}
     for result in results:
         sample_metadata["sample"] = result[0]
-        sample_metadata["ETHNICITY"] = result[1]
-        sample_metadata["GENDER"] = result[2]
-        sample_metadata["AGE"] = result[3]
-        sample_metadata["LOCATION"] = result[4]
-        sample_metadata["BBTYPE"] = result[5]
-        sample_metadata["WFREQ"] = result[6]
+        sample_metadata["ethnicity"] = result[1]
+        sample_metadata["gender"] = result[2]
+        sample_metadata["age"] = result[3]
+        sample_metadata["location"] = result[4]
+        sample_metadata["bbtype"] = result[5]
+        sample_metadata["wfreq"] = result[6]
 
     print(sample_metadata)
     return jsonify(sample_metadata)
